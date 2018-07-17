@@ -66,11 +66,12 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-# 可以同时配置多个pipeline，后面是其优先级，值越小优先级越高
+# 可以同时配置多个pipeline，后面是其优先级，值越小优先级越高，取值范围为：0 ~ 1000
+# https://docs.scrapy.org/en/latest/topics/item-pipeline.html#activating-an-item-pipeline-component
 ITEM_PIPELINES = {
-    'quotes.pipelines.QuotesPipeline': 300,
-    # 'quotes.pipelines.MongoPipeline': 500,
-    'quotes.pipelines.JsonWriterPipeline': 600,
+    'quotes.pipelines.QuotesPipeline': 100,
+    # 'quotes.pipelines.MongoPipeline': 120,
+    'quotes.pipelines.JsonWriterPipeline': 140,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
