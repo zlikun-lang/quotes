@@ -54,12 +54,9 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-# DOWNLOADER_MIDDLEWARES = {
-#    'quotes.middlewares.QuotesDownloaderMiddleware': 543,
-# }
 # 指定一个下载中间件，该中间件为request设置一个代理
 DOWNLOADER_MIDDLEWARES = {
-    # 'quotes.middlewares.QuotesDownloaderMiddleware': 543,
+    'quotes.middlewares.QuotesDownloaderMiddleware': 543,
     'quotes.middlewares.ProxyMiddleware': 544,
 }
 
