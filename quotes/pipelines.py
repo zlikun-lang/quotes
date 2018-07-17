@@ -7,6 +7,7 @@
 import json
 
 from pymongo import MongoClient
+from scrapy.exceptions import DropItem
 
 
 class QuotesPipeline(object):
@@ -31,7 +32,6 @@ class JsonWriterPipeline(object):
 
 # https://docs.scrapy.org/en/latest/topics/item-pipeline.html#write-items-to-mongodb
 class MongoPipeline(object):
-
     """
     官方文档上的Mongo配置方法仅供参考（可能过时了），新版 pymongo 库不使用 url 配置Mongo连接
     """
@@ -59,3 +59,21 @@ class MongoPipeline(object):
     def process_item(self, item, spider):
         self.db.get_collection('quote').insert_one(dict(item))
         return item
+
+
+# https://docs.scrapy.org/en/latest/topics/item-pipeline.html#duplicates-filter
+class DuplicatesPipeline(object):
+    """
+    实现对结果集的去重
+    """
+
+    def __init__(self):
+        self.authors_seen = set()
+
+    def process_item(self, item, spider):
+        if item['author'] in self.authors_seen:
+            # 抛出DropItem()后，该结果将被丢弃(其它Pipeline不会得到该Item)
+            raise DropItem('Duplicate item found: {}'.format(item))
+        else:
+            self.authors_seen.add(item['author'])
+            return item
