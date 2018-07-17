@@ -69,7 +69,8 @@ ROBOTSTXT_OBEY = True
 # 可以同时配置多个pipeline，后面是其优先级，值越小优先级越高
 ITEM_PIPELINES = {
     'quotes.pipelines.QuotesPipeline': 300,
-    'quotes.pipelines.MongoPipeline': 500,
+    # 'quotes.pipelines.MongoPipeline': 500,
+    'quotes.pipelines.JsonWriterPipeline': 600,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

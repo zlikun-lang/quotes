@@ -29,6 +29,8 @@ $ scrapy crawl quote
 ```
 - 将爬取的数据生成json/xml/csv等格式文件保存
 ```
+# .data/ 目录需要事先创建(手动)，位于工程根目录下
+
 # 运行爬虫，将结果保存成一个JSON文件(组织为一个数组)
 $ scrapy crawl quote -o .data/quotes.json
 # 运行爬虫，将结果保存成一个JSON文件(一条记录一行) 
