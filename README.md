@@ -1,6 +1,6 @@
 # Scrapy 学习工程
 
-- https://docs.scrapy.org/en/latest/
+- https://scrapy.org/
 - https://docs.scrapy.org/en/latest/
 
 #### 创建工程
@@ -40,5 +40,6 @@ $ scrapy crawl quote -o .data/quotes.csv
 ```
 - 将爬取的数据写入MongoDB
 ```
-
+# 运行爬虫
+$ scrapy crawl quote
 ```
