@@ -29,8 +29,12 @@ class JsonWriterPipeline(object):
         return item
 
 
-# https://doc.scrapy.org/en/latest/topics/item-pipeline.html
+# https://docs.scrapy.org/en/latest/topics/item-pipeline.html#write-items-to-mongodb
 class MongoPipeline(object):
+
+    """
+    官方文档上的Mongo配置方法仅供参考（可能过时了），新版 pymongo 库不使用 url 配置Mongo连接
+    """
 
     def __init__(self, mongo_host, mongo_db):
         self.mongo_host = mongo_host
@@ -38,6 +42,7 @@ class MongoPipeline(object):
 
     @classmethod
     def from_crawler(cls, crawler):
+        # 这里的配置由 settings.py 文件提供
         # 构造(初始化)方法中的值由这里注入
         return cls(
             mongo_host=crawler.settings.get('MONGO_HOST'),
