@@ -57,6 +57,11 @@ ROBOTSTXT_OBEY = True
 # DOWNLOADER_MIDDLEWARES = {
 #    'quotes.middlewares.QuotesDownloaderMiddleware': 543,
 # }
+# 指定一个下载中间件，该中间件为request设置一个代理
+DOWNLOADER_MIDDLEWARES = {
+    # 'quotes.middlewares.QuotesDownloaderMiddleware': 543,
+    'quotes.middlewares.ProxyMiddleware': 544,
+}
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
@@ -71,7 +76,7 @@ ROBOTSTXT_OBEY = True
 ITEM_PIPELINES = {
     'quotes.pipelines.QuotesPipeline': 100,
     # 'quotes.pipelines.MongoPipeline': 120,
-    'quotes.pipelines.JsonWriterPipeline': 140,
+    # 'quotes.pipelines.JsonWriterPipeline': 140,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

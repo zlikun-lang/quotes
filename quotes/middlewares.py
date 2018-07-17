@@ -4,6 +4,7 @@
 #
 # See documentation in:
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
+import logging
 
 from scrapy import signals
 
@@ -101,3 +102,19 @@ class QuotesDownloaderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+
+class ProxyMiddleware(object):
+    logger = logging.getLogger(__name__)
+
+    def process_request(self, request, spider):
+        """
+        通过搜索输出日志，可以确认应用了该中间件，而且代理IP也生效了
+        :param request:
+        :param spider:
+        :return:
+        """
+        self.logger.debug('Using Proxy')
+        # 从西刺代理上随便找的一个代理IP
+        # http://www.xicidaili.com/
+        request.meta['proxy'] = 'http://111.155.124.84:8123'
