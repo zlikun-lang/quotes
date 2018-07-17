@@ -120,7 +120,12 @@ class ProxyMiddleware(object):
         request.meta['proxy'] = 'http://111.155.124.84:8123'
 
     def process_response(self, request, response, spider):
-        # 没有实际意义，仅用于测试，观察输出日志，可以看出响应状态码确实改变了
-        self.logger.debug('修改响应状态码[{}]为：{}'.format(response.status, 201))
-        response.status = 201
+        # # 没有实际意义，仅用于测试，观察输出日志，可以看出响应状态码确实改变了
+        # self.logger.debug('修改响应状态码[{}]为：{}'.format(response.status, 201))
+        # response.status = 201
         return response
+
+    def process_exception(self, request, exception, spider):
+        # 当发生异常时，把异常打印出来
+        # User timeout caused connection failure: Getting https://www.google.com/ took longer than 3.0 seconds..
+        self.logger.error(exception)
